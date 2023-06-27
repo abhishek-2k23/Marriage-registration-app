@@ -13,6 +13,7 @@ loggedin.classList.add("hide");
 logout.addEventListener('click',(event)=>{
     event.preventDefault();
     loggedin.classList.toggle("hide");
+    errorOccur.classList.toggle("hide");
     if(loggedin.classList.contains("hide")){
         console.log("logged in contains hide after logount click.")
     }else{
@@ -51,6 +52,7 @@ function login(data){
                 form.reset();
             }else if(xhr.status === 404){
                 console.log("check you password",xhr.responseText);
+                errorOccur.classList.toggle("hide");
                 errorOccur.innerText = `Incorrect username or password.`;
             }else{
                 console.log("Error",xhr.response);
