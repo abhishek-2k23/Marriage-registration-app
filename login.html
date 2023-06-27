@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marriage Registration</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container" class="container">
+      <!-- for user credentials -->
+      <div class="form-container">
+        <div class="form-field" id="form-field">
+          <div class="header">
+            <h2>Login Youself</h2>
+          </div>
+          <form method="post" id="loginform">
+            <label for="email">Email : </label>
+            <input
+              type="email"
+              placeholder="Enter your e-mail"
+              name="Email"
+              id="email"
+              required
+            /><br />
+
+            <label for="password">Password : </label>
+            <input
+              type="password"
+              placeholder="Enter you password"
+              name="Password"
+              id="password"
+              required
+            />
+            <!-- <input type="submit" value="submit" id="submitBtn"> -->
+            <button id="loginBtn">Login</button>
+          </form>
+          <p id="errorOccur" style="text-align: center; margin-top: 5px; color: rgb(250, 45, 45);"></p>
+          <p class="register-button"><a href="index.html">Register</a></p>
+        </div>
+        <!-- if user get logged in successfully  -->
+        <div class="hide" id="logged-in">
+          <h4 id="userName"></h4>
+          
+          <h4><u>You are logged in successfully.</u></h4>
+
+          <p style="text-align: center;"><a id="logout" href="login.html">logout</a></p>
+        </div>
+        <p id="submitted-Data"></p>
+      </div>
+
+      <!-- <button id="getUser">Click to see all users</button>
+      <p id="userData"></p> -->
+    </div>
+
+    <script type="text/javascript" src="loginScript.js"></script>
+  </body>
+</html>
