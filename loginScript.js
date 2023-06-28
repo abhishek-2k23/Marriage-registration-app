@@ -33,6 +33,12 @@ form.addEventListener('submit',(event)=>{
     login(data);
 })
 
+loginBtn.addEventListener('keydown',(event)=>{
+    if(event.key === 'Enter'){
+      submitBtn.style.backgroundColor = 'red';
+      submitBtn.style.color = 'white';
+    }
+  })
 function login(data){
     {
         console.log("on login function");

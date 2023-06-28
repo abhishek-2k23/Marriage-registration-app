@@ -15,7 +15,11 @@ form.addEventListener("submit", (event) => {
 
   console.log(jsondata);
 });
-
+submitBtn.addEventListener('keydown',(event)=>{
+  if(event.key === 'Enter'){
+    submitBtn.style.backgroundColor = 'red';
+  }
+})
 // async function sendData(jsondata) {
 
 //   submitBtn.disabled = true;
@@ -61,22 +65,27 @@ function sendData(data){
 
             var response = JSON.parse(xhr.responseText);
             console.log('Data sent successfully:', response);
+            successP.innerHTML = `<p style="color:green">Congratualitions You are registed </p>`;
+            form.reset();
             setTimeout(() => {
-              successP.innerHTML = `<p style="color:green">Congratualitions You are registed </p>`;
-            }, 3000);
+              successP.innerHTML = `<p></p>`;
+            }, 5000);
             
           } else {
             if(xhr.status === 409){
               console.log("User Exist already",JSON.parse(xhr.responseText),"\n",xhr.responseText);
+              successP.innerHTML = `<p style="color:red">sorry You are already registed. Try to login with your email </p>`;
+              
               setTimeout(() => {
-                successP.innerHTML = `<p style="color:red">sorry You are already registed. Try to login with your email </p>`;
-              }, 3000);
+                successP.innerHTML = `<p></p>`;
+              }, 5000);
             }else{
 
               console.error('Error:', xhr.statusText);
+              successP.innerHTML = `<p style="color:red">sorry! Server is not connected. Try after sometime. </p>`;
               setTimeout(() => {
-                successP.innerHTML = `<p style="color:red">sorry! Server is not connected. Try after sometime. </p>`;
-              }, 3000);
+                successP.innerHTML = `<p></p>`;
+              }, 5000);
             }
 
           }
