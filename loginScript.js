@@ -8,6 +8,8 @@ const loggedin = document.getElementById("logged-in");
 const userName = document.getElementById("userName");
 const logout = document.getElementById("logout");
 const errorOccur = document.getElementById("errorOccur");
+const dots = document.getElementById("dots");
+
 
 loggedin.classList.add("hide");
 logout.addEventListener('click',(event)=>{
@@ -22,7 +24,7 @@ logout.addEventListener('click',(event)=>{
     formfield.classList.toggle("hide")
 });
 // container.classList.toggle("hide");
-loginBtn.addEventListener('click',(event)=>{
+form.addEventListener('submit',(event)=>{
     event.preventDefault();
     const formdata = new FormData(form);
     const data = Object.fromEntries(formdata);
@@ -32,6 +34,12 @@ loginBtn.addEventListener('click',(event)=>{
 })
 
 function login(data){
+    {
+        console.log("on login function");
+        dots.classList.remove("hide");
+        loginBtn.value = "wait";
+        loginBtn.disabled = true;
+    }
     const xhr = new XMLHttpRequest();
     xhr.open('POST','https://form-data-submission-2ew5.onrender.com/login');
     xhr.setRequestHeader('content-type','application/json');
@@ -43,49 +51,51 @@ function login(data){
                 
                 loggedin.classList.toggle("hide");
                 
-    if(!loggedin.classList.contains("hide")){
-        console.log("logged in not contains hide after login.")
-    }
                 const userdata = JSON.parse(xhr.responseText);
                 userName.innerText = `Hi, ${userdata.user.firstName}`
                 console.log(xhr.responseText);
                 form.reset();
             }else if(xhr.status === 404){
                 console.log("check you password",xhr.responseText);
-                errorOccur.classList.toggle("hide");
+                errorOccur.classList.remove("hide");
                 errorOccur.innerText = `Incorrect username or password.`;
             }else{
                 console.log("Error",xhr.response);
                 errorOccur.innerText = `some error occured. Try after sometime`;
             }
+            
+    dots.classList.add("hide");
+    loginBtn.value = "Login";
         }
     }
     xhr.send(JSON.stringify(data));
+    
+    loginBtn.disabled = false;
 }
 
 
-getuser.addEventListener('click',fetchdata);
+// getuser.addEventListener('click',fetchdata);
 
-function fetchdata(){
-    // window.location.reload();
-  var userHTML = ""
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET','http://localhost:4000/getusers',true);
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState === XMLHttpRequest.DONE){
-      if(xhr.status === 200){
-        console.log("data fetched");
-        var jsondata = JSON.parse(xhr.responseText);
+// function fetchdata(){
+//     // window.location.reload();
+//   var userHTML = ""
+//   let xhr = new XMLHttpRequest();
+//   xhr.open('GET','http://localhost:4000/getusers',true);
+//   xhr.onreadystatechange = function(){
+//     if(xhr.readyState === XMLHttpRequest.DONE){
+//       if(xhr.status === 200){
+//         console.log("data fetched");
+//         var jsondata = JSON.parse(xhr.responseText);
         
-        jsondata.data.forEach(user => {
-          console.log(user);
-           userHTML = `<p>Name : ${user.firstName} ${user.lastName} ,Email : ${user.Email}, Number : ${user.phoneNumber}, Age : ${user.Age}, gender : ${user.gender}</p>`
-        userData.innerHTML += userHTML;
-        });
-      }else{
-        console.log("Error : ",xhr.statusText);
-      }
-    }
-  }
-  xhr.send();
-}
+//         jsondata.data.forEach(user => {
+//           console.log(user);
+//            userHTML = `<p>Name : ${user.firstName} ${user.lastName} ,Email : ${user.Email}, Number : ${user.phoneNumber}, Age : ${user.Age}, gender : ${user.gender}</p>`
+//         userData.innerHTML += userHTML;
+//         });
+//       }else{
+//         console.log("Error : ",xhr.statusText);
+//       }
+//     }
+//   }
+//   xhr.send();
+// }

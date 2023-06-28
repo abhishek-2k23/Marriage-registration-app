@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marriage Registration</title>
+    <title> Registration App</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="asset/favicon.png">
+    <link rel="icon" type="image/png" href="asset/favicon.png" />
   </head>
   <body>
     <div id="container" class="container">
@@ -13,7 +13,7 @@
       <div class="form-container">
         <div class="form-field" id="form-field">
           <div class="header">
-            <h2>Login Youself</h2>
+            <h2>Login Yourself</h2>
           </div>
           <form method="post" id="loginform" class="lform">
             <label for="email">Email : </label>
@@ -34,18 +34,26 @@
               required
             />
             <!-- <input type="submit" value="submit" id="submitBtn"> -->
-            <button id="loginBtn">Login</button>
+            <div class="login-btn">
+              <div class="dots hide" id="dots"></div>
+              <input type="submit" value="Login" id="loginBtn" />
+            </div>
           </form>
-          <p id="errorOccur" style="text-align: center; margin-top: 5px; color: rgb(250, 45, 45);"></p>
+          <p
+            id="errorOccur"
+            style="text-align: center; margin-top: 5px; color: rgb(250, 45, 45)"
+          ></p>
           <p class="register-button"><a href="index.html">Register</a></p>
         </div>
         <!-- if user get logged in successfully  -->
         <div class="hide" id="logged-in">
           <h4 id="userName"></h4>
-          
+
           <h4><u>You are logged in successfully.</u></h4>
 
-          <p style="text-align: center;"><a id="logout" href="login.html">logout</a></p>
+          <p style="text-align: center">
+            <a id="logout" href="login.html">logout</a>
+          </p>
         </div>
         <p id="submitted-Data"></p>
       </div>
